@@ -39,6 +39,7 @@ app.use(
     credentials: true,
     methods: 'GET, PUT, PATCH, POST, DELETE',
     allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  // eslint-disable-next-line comma-dangle
   })
 );
 
