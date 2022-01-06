@@ -19,6 +19,7 @@ router.patch(
       email: Joi.string().email().required(),
     }),
   }),
+  // eslint-disable-next-line comma-dangle
   updateUser
 );
 

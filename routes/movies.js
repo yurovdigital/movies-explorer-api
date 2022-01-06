@@ -27,16 +27,19 @@ router.post(
       image: Joi.string()
         .required()
         .pattern(
+          // eslint-disable-next-line comma-dangle
           /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
         ),
       trailer: Joi.string()
         .required()
         .pattern(
+          // eslint-disable-next-line comma-dangle
           /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
         ),
       thumbnail: Joi.string()
         .required()
         .pattern(
+          // eslint-disable-next-line comma-dangle
           /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
         ),
       movieId: Joi.number().required(),
@@ -44,6 +47,7 @@ router.post(
       nameEN: Joi.string().required(),
     }),
   }),
+  // eslint-disable-next-line comma-dangle
   createMovie
 );
 
@@ -55,5 +59,8 @@ router.delete(
       movieId: Joi.string().length(24).hex(),
     }),
   }),
+  // eslint-disable-next-line comma-dangle
   deleteMovie
 );
+
+module.exports = router;
