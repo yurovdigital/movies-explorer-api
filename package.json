@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "lint": "mpx eslint .",
-    "deploy": "scp -r ./* yurov@51.250.31.75:/home/yurov/backend"
+    "lint": "mpx eslint ."
   },
   "repository": {
     "type": "git",
