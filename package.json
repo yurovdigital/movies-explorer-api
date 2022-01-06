@@ -1,0 +1,41 @@
+{
+  "name": "movies-explorer-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "mpx eslint .",
+    "deploy": "scp -r ./* yurov@51.250.31.75:/home/yurov/backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yurovdigital/movies-explorer-api.git"
+  },
+  "author": "Stanislav Yurov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yurovdigital/movies-explorer-api/issues"
+  },
+  "homepage": "https://github.com/yurovdigital/movies-explorer-api#readme",
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.1",
+    "celebrate": "^15.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.5",
+    "validator": "^13.7.0",
+    "winston": "^3.3.3"
+  }
+}
