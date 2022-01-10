@@ -29,39 +29,39 @@ const movieSchema = new mongoose.Schema({
       validator: (i) => isURL(i),
       message: 'Поле должно содержать URL',
     },
-    trailer: {
-      type: String,
-      required: true,
-      validate: {
-        validator: (i) => isURL(i),
-        message: 'Поле должно содержать URL',
-      },
+  },
+  trailer: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (i) => isURL(i),
+      message: 'Поле должно содержать URL',
     },
-    thumbnail: {
-      type: String,
-      required: true,
-      validate: {
-        validator: (i) => isURL(i),
-        message: 'Поле должно содержать URL',
-      },
+  },
+  thumbnail: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (i) => isURL(i),
+      message: 'Поле должно содержать URL',
     },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      rew: 'user',
-      required: true,
-    },
-    movieId: {
-      type: Number,
-      required: true,
-    },
-    nameRU: {
-      type: String,
-      required: true,
-    },
-    nameEN: {
-      type: String,
-      required: true,
-    },
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: true,
+  },
+  movieId: {
+    type: Number,
+    required: true,
+  },
+  nameRU: {
+    type: String,
+    required: true,
+  },
+  nameEN: {
+    type: String,
+    required: true,
   },
 });
 

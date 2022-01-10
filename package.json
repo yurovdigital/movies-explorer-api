@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "lint": "mpx eslint ."
+    "lint": "npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,9 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
+    "express-rate-limit": "^6.0.5",
     "express-winston": "^4.2.0",
+    "helmet": "^5.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.5",
     "validator": "^13.7.0",

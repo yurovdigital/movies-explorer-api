@@ -4,29 +4,32 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 // База данных
 const mongoose = require('mongoose');
 // ПОРТ
-const { PORT = 3000 } = process.env;
+const { NODE_ENV, PORT = 3000, DATA_BASE } = process.env;
 // РОУТЫ
-const authRoutes = require('./routes/auth');
-const usersRoutes = require('./routes/users');
-const moviesRoutes = require('./routes/movies');
+const routes = require('./routes/index');
+
 // Middlewares
-const auth = require('./middlewares/auth');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/rate-limiter');
 
 const app = express();
+
+// helmet
+app.use(helmet());
 
 // BodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB
-mongoose.connect('mongodb://localhost:27017/bitfilmdb');
+mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/moviesdb');
 
-// Логгер запросов
+// логгер запросов
 app.use(requestLogger);
 
 app.use(
@@ -39,20 +42,17 @@ app.use(
     credentials: true,
     methods: 'GET, PUT, PATCH, POST, DELETE',
     allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-  // eslint-disable-next-line comma-dangle
-  })
+  }),
 );
 
-app.use('/', authRoutes);
+// rate limiter
+app.use(limiter);
 
-app.use(auth);
+// Подключение роутов
+app.use(routes);
 
-app.use('/', usersRoutes);
-app.use('/', moviesRoutes);
-
-// Логгер ошибок
+// Обработка ошибок
 app.use(errorLogger);
-
 app.use(errors());
 app.use(error);
 

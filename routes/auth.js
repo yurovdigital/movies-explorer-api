@@ -17,7 +17,7 @@ router.post(
       password: Joi.string().min(3).required(),
     }),
   }),
-  createUser
+  createUser,
 );
 
 // проверяет переданные в теле почту и пароль
@@ -29,7 +29,7 @@ router.post(
       password: Joi.string().min(3).required(),
     }),
   }),
-  login
+  login,
 );
 
 module.exports = router;

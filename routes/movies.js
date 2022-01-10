@@ -27,28 +27,24 @@ router.post(
       image: Joi.string()
         .required()
         .pattern(
-          // eslint-disable-next-line comma-dangle
-          /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
+          /^(https?:\/\/)(www\.)?[\w-]+(\.[a-z])+[\w~!@#$%&*()-+=:;\\'",.?/]+#?/i,
         ),
       trailer: Joi.string()
         .required()
         .pattern(
-          // eslint-disable-next-line comma-dangle
-          /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
+          /^(https?:\/\/)(www\.)?[\w-]+(\.[a-z])+[\w~!@#$%&*()-+=:;\\'",.?/]+#?/i,
         ),
       thumbnail: Joi.string()
         .required()
         .pattern(
-          // eslint-disable-next-line comma-dangle
-          /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
+          /^(https?:\/\/)(www\.)?[\w-]+(\.[a-z])+[\w~!@#$%&*()-+=:;\\'",.?/]+#?/i,
         ),
       movieId: Joi.number().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
     }),
   }),
-  // eslint-disable-next-line comma-dangle
-  createMovie
+  createMovie,
 );
 
 // удаляет сохранённый фильм по id
@@ -59,8 +55,7 @@ router.delete(
       movieId: Joi.string().length(24).hex(),
     }),
   }),
-  // eslint-disable-next-line comma-dangle
-  deleteMovie
+  deleteMovie,
 );
 
 module.exports = router;

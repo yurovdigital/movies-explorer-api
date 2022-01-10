@@ -58,21 +58,18 @@ module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
   bcrypt
     .hash(password, 10)
-    .then((hash) =>
-      /* eslint-disable implicit-arrow-linebreak */
-      User.create({
-        name,
-        email,
-        password: hash,
-      })
-    )
-    .then((user) => res.send(user))
+    .then((hash) => User.create({
+      name,
+      email,
+      password: hash,
+    }))
+    .then((user) => res.send({ user: { name: user.name, email: user.email } }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные.'));
       } else if (err.code === 11000) {
         next(
-          new ConflictError('Пользователь с такими данными уже есть в базе')
+          new ConflictError('Пользователь с такими данными уже есть в базе'),
         );
       } else {
         next(err);
