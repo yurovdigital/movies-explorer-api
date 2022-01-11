@@ -35,8 +35,8 @@ app.use(requestLogger);
 app.use(
   cors({
     origin: [
-      'https://yurov.mesto.nomoredomains.rocks',
-      'http://yurov.mesto.nomoredomains.rocks',
+      'https://movies-yd.nomoredomains.rocks',
+      'http://movies-yd.nomoredomains.rocks',
       'http://localhost:3000',
     ],
     credentials: true,
