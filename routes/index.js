@@ -15,3 +15,5 @@ router.use(auth);
 router.use('/', usersRoutes);
 router.use('/', moviesRoutes);
 router.use(notFound);
+
+module.exports = router;
