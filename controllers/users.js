@@ -36,7 +36,7 @@ module.exports.updateUser = (req, res, next) => {
     {
       new: true,
       runValidators: true,
-    },
+    }
   )
     .orFail(new NotFoundError('Пользователь не найден.'))
     .then((user) => res.send(user))
@@ -58,18 +58,26 @@ module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
   bcrypt
     .hash(password, 10)
-    .then((hash) => User.create({
-      name,
-      email,
-      password: hash,
-    }))
-    .then((user) => res.send({ user: { name: user.name, email: user.email } }))
+    .then((hash) =>
+      User.create({
+        name,
+        email,
+        password: hash,
+      })
+    )
+    .then((user) =>
+      res.send({
+        _id: user._id,
+        name,
+        email,
+      })
+    )
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные.'));
       } else if (err.code === 11000) {
         next(
-          new ConflictError('Пользователь с такими данными уже есть в базе'),
+          new ConflictError('Пользователь с такими данными уже есть в базе')
         );
       } else {
         next(err);
@@ -86,7 +94,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign(
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-        { expiresIn: '7d' },
+        { expiresIn: '7d' }
       );
 
       res.status(200).send({ token });
