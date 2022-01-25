@@ -28,13 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB
 mongoose.connect(
-  NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/bitfilmdb',
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  }
+  NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/bitfilmdb'
 );
 
 // логгер запросов
