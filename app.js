@@ -27,7 +27,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB
-mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/moviesdb');
+mongoose.connect(
+  NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/bitfilmdb',
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  }
+);
 
 // логгер запросов
 app.use(requestLogger);
@@ -42,7 +50,7 @@ app.use(
     credentials: true,
     methods: 'GET, PUT, PATCH, POST, DELETE',
     allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-  }),
+  })
 );
 
 // rate limiter
