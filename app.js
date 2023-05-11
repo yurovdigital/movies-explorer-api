@@ -36,7 +36,7 @@ app.use(requestLogger);
 
 app.use(
   cors({
-    origin: ['*'],
+    origin: ['http://localhost:3000', 'http://movies-explorer.yurovdigital.ru'],
     credentials: true,
     methods: 'GET, PUT, PATCH, POST, DELETE',
     allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
