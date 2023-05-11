@@ -37,10 +37,10 @@ app.use(requestLogger);
 app.use(
   cors({
     origin: [
-      'http://localhost:3000',
-      'https://locahost:3000',
       'http://movies-explorer.yurovdigital.ru',
       'https://movies-explorer.yurovdigital.ru',
+      'http://localhost:3000',
+      'https://locahost:3000',
     ],
     credentials: true,
     methods: 'GET, PUT, PATCH, POST, DELETE',
@@ -52,7 +52,7 @@ app.use(
 app.use(limiter);
 
 // Подключение роутов
-app.use(routes);
+app.use('/api', routes);
 
 // Обработка ошибок
 app.use(errorLogger);
